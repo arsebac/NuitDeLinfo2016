@@ -5,11 +5,8 @@
  * Date: 01/12/2016
  * Time: 20:46
  */
-$mysqli = new mysqli('127.0.0.1', 'root', '', 'Nuit');
-if ($mysqli->connect_errno) {
-    echo "Unable to open database";
-    echo "Errno: " . $mysqli->connect_errno . "\n";
-}
+ require_once "bdConnection.php";
+
 getArticles($mysqli);
 /**
  *

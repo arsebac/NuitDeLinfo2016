@@ -1,4 +1,4 @@
-CREATE TABLE `Nuit`.`articles` (
+CREATE TABLE `articles` (
   `idArticle`  SMALLINT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `visibility` TINYINT       NOT NULL,
   `title`      VARCHAR(500)  NOT NULL,
