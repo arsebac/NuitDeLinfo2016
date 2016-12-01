@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Réfugiés sans frontieres</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
