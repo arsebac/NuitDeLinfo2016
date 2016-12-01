@@ -1,0 +1,12 @@
+
+CREATE TABLE `location` (
+  `idLocation` smallint(6) NOT NULL,
+  `lat` decimal(10,0) NOT NULL,
+  `lng` decimal(10,0) NOT NULL,
+  `name`    VARCHAR(2000) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+ALTER TABLE `location`
+  ADD PRIMARY KEY (`idLocation`);
+ALTER TABLE `location`
+  MODIFY `idLocation` smallint(6) NOT NULL AUTO_INCREMENT;
