@@ -12,15 +12,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.hackermen.migrantssansfrontieres.util.GPSTracker;
 import org.hackermen.migrantssansfrontieres.util.MapUtil;
-import org.hackermen.migrantssansfrontieres.util.Pointer;
+import org.hackermen.migrantssansfrontieres.util.Marker;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private List<Pointer> pointers;
+    private List<Marker> markers;
     private MapUtil mapUtil;
 
     @Override
@@ -55,14 +54,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng currentLocation = new LatLng(gpsTracker.getLatitude(), gpsTracker.getLongitude());
         mMap.addMarker(new MarkerOptions().position(currentLocation));
 
-//        pointers = mapUtil.getNearbyPointers();
-        pointers = Arrays.asList(new Pointer(-31, 150, "test", "je suis un test"));
+        markers = mapUtil.getNearbyPointers();;
 
-        for (Pointer pointer : pointers) {
-            LatLng latLng = new LatLng(pointer.getLongitude(), pointer.getLatitude());
+        for (Marker marker : markers) {
+            LatLng latLng = new LatLng(marker.getLongitude(), marker.getLatitude());
             mMap.addMarker(new MarkerOptions().position(latLng)
-                    .title(pointer.getName()));
+                    .title(marker.getName()));
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+        mMap.setOnMapClickListener(new ClickListener());
     }
+
+    private class ClickListener implements GoogleMap.OnMapClickListener
+
+    {
+
+        @Override
+        public void onMapClick(LatLng latLng) {
+            MarkerOptions markerOptions = new MarkerOptions();
+
+            markerOptions.position(latLng);
+            String title = latLng.latitude + " : " + latLng.longitude;
+            markerOptions.title(title);
+
+            mMap.addMarker(markerOptions);
+            mapUtil.addMarker((long) latLng.longitude, (long) latLng.latitude, title, "", "");
+        }
+    }
+
+
 }

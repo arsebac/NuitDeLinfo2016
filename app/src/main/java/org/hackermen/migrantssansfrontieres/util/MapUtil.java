@@ -29,8 +29,8 @@ public class MapUtil {
         this.context = context;
     }
 
-    public List<Pointer> getNearbyPointers() {
-        final List<Pointer> list = new ArrayList<>();
+    public List<Marker> getNearbyPointers() {
+        final List<Marker> list = new ArrayList<>();
 
         new AsyncTask<String, Void, Void>() {
 
@@ -52,8 +52,9 @@ public class MapUtil {
                         JSONObject jsonObject = new JSONObject(stringBuilder.toString());
                         JSONArray pointers = jsonObject.getJSONArray("pts");
                         for (int i = 0; i < pointers.length(); i++) {
-                            list.add(new Pointer(pointers.getLong(0), pointers.getLong(1),
-                                    pointers.getString(2), pointers.getString(3)));
+                            JSONObject marker = pointers.getJSONObject(i);
+                            list.add(new Marker(marker.getLong("long"), marker.getLong("lat"),
+                                    marker.getString("name"), marker.getString("descr"), marker.getString("type")));
                         }
                     }
                 } catch (MalformedURLException e) {
@@ -76,6 +77,48 @@ public class MapUtil {
 
 
         return list;
+    }
+
+
+    public void addMarker(final long longitude, final long latitude, final String title, final String description, final String type) {
+        new AsyncTask<String, Void, Void>() {
+
+            @Override
+            protected Void doInBackground(String... strings) {
+                try {
+                    // TODO: 01/12/2016 Change URL
+                    URL url = new URL("url");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                    JSONObject json = new JSONObject("long :\"" + longitude + "\", lat:\"" +
+                            latitude + "\", name:\"" + title + "\", descr:\"" + description + "\", type:\"" +
+                            type + "\"");
+
+                    byte[] postDataBytes = json.toString().getBytes("UTF-8");
+
+                    conn.setRequestMethod("POST");
+                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                    conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+                    conn.setDoOutput(true);
+                    conn.getOutputStream().write(postDataBytes);
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+
+            }
+        }.execute();
     }
 
 
