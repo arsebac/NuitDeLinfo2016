@@ -1,7 +1,7 @@
 package org.hackermen.migrantssansfrontieres;
 
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -9,16 +9,19 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PointOfInterest;
 
 import org.hackermen.migrantssansfrontieres.util.GPSTracker;
+import org.hackermen.migrantssansfrontieres.util.MapUtil;
+import org.hackermen.migrantssansfrontieres.util.Pointer;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private List<LatLng> pointers;
+    private List<Pointer> pointers;
+    private MapUtil mapUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +30,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-
-
+        mapUtil = new MapUtil(this);
 
         mapFragment.getMapAsync(this);
     }
@@ -51,9 +53,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         GPSTracker gpsTracker = new GPSTracker(this);
         LatLng currentLocation = new LatLng(gpsTracker.getLatitude(), gpsTracker.getLongitude());
+        mMap.addMarker(new MarkerOptions().position(currentLocation));
 
-        for(LatLng pointer : pointers){
-            mMap.addMarker(new MarkerOptions().position(pointer));
+//        pointers = mapUtil.getNearbyPointers();
+        pointers = Arrays.asList(new Pointer(-31, 150, "test", "je suis un test"));
+
+        for (Pointer pointer : pointers) {
+            LatLng latLng = new LatLng(pointer.getLongitude(), pointer.getLatitude());
+            mMap.addMarker(new MarkerOptions().position(latLng)
+                    .title(pointer.getName()));
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
     }
