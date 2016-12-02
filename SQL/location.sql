@@ -4,7 +4,7 @@ CREATE TABLE `location` (
   `lat` decimal(10,0) NOT NULL,
   `lng` decimal(10,0) NOT NULL,
   `name`    VARCHAR(2000) NOT NULL,
-  `desc`    VARCHAR(2000) NOT NULL
+  `type`    VARCHAR(2000) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 ALTER TABLE `location`
