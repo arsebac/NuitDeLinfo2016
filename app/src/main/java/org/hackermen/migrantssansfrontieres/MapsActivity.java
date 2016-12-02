@@ -106,6 +106,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         private void editMarker(final com.google.android.gms.maps.model.Marker marker){
             AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
             LinearLayout layout = new LinearLayout(MapsActivity.this);
+            layout.setOrientation(LinearLayout.VERTICAL);
             final EditText editText = new EditText(MapsActivity.this);
             editText.setTextColor(Color.BLACK);
             Spinner spinner = new Spinner(MapsActivity.this);
