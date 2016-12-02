@@ -13,26 +13,22 @@ import java.util.Map;
  */
 
 public enum MarkerType {
-    SANITAIRE("Sanitaire", "sanitaire", R.drawable.sanitaire),
-    SANTE("Santé", "sante", R.drawable.sante),
-    ASSOC("Association", "assoc", R.drawable.assoc);
+    SANITAIRE("Sanitaire", R.drawable.sanitaire),
+    SANTE("Santé", R.drawable.sante),
+    ASSOC("Association", R.drawable.assoc);
 
 
     static Map<String, MarkerType> map = new HashMap<>();
-    static List<String> names;
-    private String description;
     private String type;
     private int icon;
 
     static {
-        map.put("sanitaire", SANITAIRE);
-        map.put("sante", SANTE);
-        map.put("assoc", ASSOC);
-        names = Arrays.asList("Sanitaire", "Santé", "Association");
+        map.put("Sanitaire", SANITAIRE);
+        map.put("Santé", SANTE);
+        map.put("Association", ASSOC);
     }
 
-    MarkerType(String description, String type, int icon) {
-        this.description = description;
+    MarkerType(String type, int icon) {
         this.type = type;
         this.icon = icon;
     }
@@ -50,6 +46,8 @@ public enum MarkerType {
     }
 
     public static List<String> getStringList() {
-        return names;
+        List<String> list = new ArrayList<>();
+        for (String str : map.keySet()) list.add(str);
+        return list;
     }
 }

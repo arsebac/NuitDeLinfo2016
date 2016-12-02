@@ -174,28 +174,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         private String name;
         private String type;
         private boolean set = false;
+        LatLng lat;
 
 
         @Override
         public void onMapClick(LatLng latLng) {
-            MarkerOptions markerOptions = new MarkerOptions();
-
-            markerOptions.position(latLng);
+            lat = latLng;
             setMarker();
-            markerOptions.title(name);
 
-            mMap.addMarker(markerOptions);
-            mapUtil.addMarker((long) latLng.longitude, (long) latLng.latitude, name, "");
         }
 
         public void setMarker() {
+            System.out.println("test");
             AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
             LinearLayout layout = new LinearLayout(MapsActivity.this);
             layout.setOrientation(LinearLayout.VERTICAL);
             final EditText editText = new EditText(MapsActivity.this);
             editText.setTextColor(Color.BLACK);
-            Spinner spinner = new Spinner(MapsActivity.this);
+            final Spinner spinner = new Spinner(MapsActivity.this);
             spinner.setAdapter(new ArrayAdapter<>(MapsActivity.this, R.layout.text_view, MarkerType.getStringList()));
+            spinner.setSelection(0);
 
             layout.addView(editText);
             layout.addView(spinner);
@@ -207,7 +205,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         public void onClick(DialogInterface dialog, int id) {
                             set = true;
                             name = String.valueOf(editText.getText());
+                            MarkerOptions markerOptions = new MarkerOptions();
 
+                            markerOptions.position(lat);
+                            setMarker();
+                            markerOptions.title(name);
+                            System.out.println((String) spinner.getSelectedItem());
+                            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), MarkerType.getMarker((String) spinner.getSelectedItem()).getIcon(), null);
+                            bitmap = bitmap.createScaledBitmap(bitmap, 60, 60, false);
+
+                            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
+
+                            mMap.addMarker(markerOptions);
+                            mapUtil.addMarker((long) lat.longitude, (long) lat.latitude, name, "");
+                            dialog.cancel();
                         }
                     })
                     .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
