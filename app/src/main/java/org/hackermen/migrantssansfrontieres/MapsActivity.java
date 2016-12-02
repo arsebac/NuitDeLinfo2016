@@ -25,6 +25,7 @@ import org.hackermen.migrantssansfrontieres.util.MarkerType;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -80,6 +81,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         public boolean onMarkerClick(final com.google.android.gms.maps.model.Marker marker) {
             AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
             builder.setMessage("Editer un marker.")
+                    .setCancelable(true)
                     .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             deleteMarker(marker);
@@ -96,11 +98,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         private void editMarker(final com.google.android.gms.maps.model.Marker marker){
-            Dialog dialog;
-            final EditText editTextName = new EditText(getApplicationContext());
-            editTextName.setTextColor(Color.BLACK);
-            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+            AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
             builder.setMessage("Initialiser un nouveau marker.")
+                    .setCancelable(true)
                     .setPositiveButton(R.string.fire, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
 //                            mapUtil.editMarker(marker);
@@ -120,15 +120,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
                     });
             // Create the AlertDialog object and return it
-            dialog = builder.create();
-            dialog.addContentView(editTextName, null);
+            builder.create().show();
         }
 
         private void deleteMarker(final com.google.android.gms.maps.model.Marker marker){
-            Dialog dialog;
-            final EditText editTextName = new EditText(getApplicationContext());
-            editTextName.setTextColor(Color.BLACK);
-            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+            AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
             builder.setMessage("Voulez vous vraiment supprimer ce marker ?")
                     .setPositiveButton(R.string.fire, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -142,8 +138,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
                     });
             // Create the AlertDialog object and return it
-            dialog = builder.create();
-            dialog.addContentView(editTextName, null);
+            builder.create().show();
         }
     }
 
@@ -168,7 +163,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         public void setMarker() {
             Dialog dialog;
-            final EditText editTextName = new EditText(getApplicationContext());
+            final EditText editTextName = new EditText(MapsActivity.this);
             editTextName.setTextColor(Color.BLACK);
             AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
             builder.setMessage("Initialiser un nouveau marker.")
