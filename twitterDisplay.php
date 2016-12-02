@@ -15,12 +15,8 @@
 
 <!-- Une ou plusieurs balises HTML pour définir le contenu du document -->
 
-<script src="jquery.js"></script>
-
-<script src="mon-script.js"></script>
-
-<a class="twitter-timeline" href="https://twitter.com/hashtag/migrant" data-widget-id="804488339332231168">Tweets sur
-    #migrant</a>
+<a class="twitter-timeline" href="https://twitter.com/hashtag/SSF" data-widget-id="804488339332231168">Tweets sur
+    #SSF</a>
 <script>!function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
         if (!d.getElementById(id)) {
@@ -34,7 +30,7 @@
 
 <?php
 require_once('twitter.php');
-getTweets('#migrant', 30);
+getTweets('#SSF', 30);
 
 ?>
 
