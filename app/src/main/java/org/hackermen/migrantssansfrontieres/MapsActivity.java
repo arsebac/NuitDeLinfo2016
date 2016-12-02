@@ -115,7 +115,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             layout.addView(editText);
             layout.addView(spinner);
 
-            builder.setMessage("Initialiser un nouveau marker.")
+            builder.setMessage("Editer un nouveau marker.")
                     .setCancelable(true)
                     .setView(layout)
                     .setPositiveButton(R.string.fire, new DialogInterface.OnClickListener() {
@@ -189,15 +189,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         public void setMarker() {
-            Dialog dialog;
-            final EditText editTextName = new EditText(MapsActivity.this);
-            editTextName.setTextColor(Color.BLACK);
-            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-            builder.setMessage("Initialiser un nouveau marker.")
+            AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+            LinearLayout layout = new LinearLayout(MapsActivity.this);
+            layout.setOrientation(LinearLayout.VERTICAL);
+            final EditText editText = new EditText(MapsActivity.this);
+            editText.setTextColor(Color.BLACK);
+            Spinner spinner = new Spinner(MapsActivity.this);
+            spinner.setAdapter(new ArrayAdapter<>(MapsActivity.this, R.layout.text_view, MarkerType.getStringList()));
+
+            layout.addView(editText);
+            layout.addView(spinner);
+
+            builder.setMessage("Ajouter un nouveau marker.")
+                    .setCancelable(true)
+                    .setView(layout)
                     .setPositiveButton(R.string.fire, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             set = true;
-                            name = String.valueOf(editTextName.getText());
+                            name = String.valueOf(editText.getText());
 
                         }
                     })
@@ -207,8 +216,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
                     });
             // Create the AlertDialog object and return it
-            dialog = builder.create();
-            dialog.addContentView(editTextName, null);
+            builder.create().show();
         }
     }
 
