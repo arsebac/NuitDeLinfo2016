@@ -122,4 +122,11 @@ public class MapUtil {
     }
 
 
+    public void deleteMarker(com.google.android.gms.maps.model.Marker marker) {
+
+    }
+
+    public void editMarker(com.google.android.gms.maps.model.Marker marker) {
+
+    }
 }

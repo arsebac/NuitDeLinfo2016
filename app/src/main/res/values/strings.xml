@@ -3,4 +3,6 @@
     <string name="title_activity_maps">Map</string>
     <string name="fire">OK</string>
     <string name="cancel">Annuler</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 </resources>
