@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: user
- * Date: 02/12/2016
- * Time: 00:09
- */
 $local = true;
 if($local){
 
