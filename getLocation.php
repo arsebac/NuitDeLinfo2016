@@ -26,5 +26,5 @@ for ($row_no = 0; $row_no < $res->num_rows; $row_no++) {
     $row = $res->fetch_assoc();
     array_push($arrayResult, array("lat"=>$row["lat"],"lng"=>$row["lng"],"name"=>$row["name"],"type"=>$row["type"]));
 }
-$finalResult = array("articles" => $arrayResult);
+$finalResult = array("pts" => $arrayResult);
 echo json_encode($finalResult);
