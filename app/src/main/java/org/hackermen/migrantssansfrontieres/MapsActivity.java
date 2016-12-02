@@ -64,9 +64,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             MarkerType type = marker.getType();
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), type.getIcon(), null);
             bitmap = bitmap.createScaledBitmap(bitmap, 60, 60, false);
+
             mMap.addMarker(new MarkerOptions().position(latLng)
                     .title(marker.getName())
                     .icon(BitmapDescriptorFactory.fromBitmap(bitmap)));
+            mMap.setOnMarkerClickListener(new OnMarkerClick());
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
         mMap.setOnMapClickListener(new ClickListener());
@@ -76,10 +78,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         @Override
         public boolean onMarkerClick(final com.google.android.gms.maps.model.Marker marker) {
-            Dialog dialog;
-            final EditText editTextName = new EditText(getApplicationContext());
-            editTextName.setTextColor(Color.BLACK);
-            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+            AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
             builder.setMessage("Editer un marker.")
                     .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -92,8 +91,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
                     });
             // Create the AlertDialog object and return it
-            dialog = builder.create();
-            dialog.addContentView(editTextName, null);
+            builder.create().show();
             return true;
         }
 
