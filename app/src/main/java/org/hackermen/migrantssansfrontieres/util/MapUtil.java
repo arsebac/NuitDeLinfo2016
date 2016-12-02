@@ -54,7 +54,7 @@ public class MapUtil {
                         for (int i = 0; i < pointers.length(); i++) {
                             JSONObject marker = pointers.getJSONObject(i);
                             list.add(new Marker(marker.getLong("long"), marker.getLong("lat"),
-                                    marker.getString("name"), marker.getString("descr"), marker.getString("type")));
+                                    marker.getString("name"), MarkerType.getMarker("type")));
                         }
                     }
                 } catch (MalformedURLException e) {
@@ -80,7 +80,7 @@ public class MapUtil {
     }
 
 
-    public void addMarker(final long longitude, final long latitude, final String title, final String description, final String type) {
+    public void addMarker(final long longitude, final long latitude, final String title, final String type) {
         new AsyncTask<String, Void, Void>() {
 
             @Override
@@ -91,7 +91,7 @@ public class MapUtil {
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                     JSONObject json = new JSONObject("long :\"" + longitude + "\", lat:\"" +
-                            latitude + "\", name:\"" + title + "\", descr:\"" + description + "\", type:\"" +
+                            latitude + "\", name:\"" + title + "\", type:\"" +
                             type + "\"");
 
                     byte[] postDataBytes = json.toString().getBytes("UTF-8");

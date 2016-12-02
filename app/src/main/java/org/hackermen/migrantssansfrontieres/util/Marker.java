@@ -6,29 +6,23 @@ package org.hackermen.migrantssansfrontieres.util;
 
 public class Marker {
     private String name;
-    private String description;
     private long latitude;
     private long longitude;
-    private String type;
+    private MarkerType type;
 
-    public Marker(long longitude, long latitude, String name, String description, String type) {
+    public Marker(long longitude, long latitude, String name, MarkerType type) {
         this.name = name;
-        this.description = description;
         this.latitude = latitude;
         this.longitude = longitude;
         this.type = type;
     }
 
-    public String getType() {
+    public MarkerType getType() {
         return type;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public long getLatitude() {
