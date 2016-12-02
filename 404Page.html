@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error 404</title>
+</head>
+<body>
+<h1 align="center">Jamais 4 sans 4</h1>
+<div style="text-align: center;"><img id="id" align="middle" src="assets/404_picture.png" alt="404Picture" width="800px"
+                                      height="600px" onclick="window.setInterval(myFunction,500)"></div>
+<script>
+    var test = true;
+    function myFunction() {
+        var element=document.getElementById('id');
+        if (test == true) {
+            element.src = "assets/404_picture2.png";
+            test = false;
+        } else {
+            element.src = "assets/404_picture.png";
+            test = true;
+        }
+    }
+</script>
+</body>
+</html>
