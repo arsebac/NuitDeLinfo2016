@@ -11,4 +11,4 @@ ALTER TABLE `location`
   ADD PRIMARY KEY (`idLocation`);
 ALTER TABLE `location`
   MODIFY `idLocation` smallint(6) NOT NULL AUTO_INCREMENT;
-INSERT INTO `location` (`idLocation`, `lat`, `lng`, `name`, `desc`) VALUES (NULL, '120', '1240', 'Triangle des bermudes', "Un endroit inexistant avec plein d\'imigrés");
+INSERT INTO `location` (`idLocation`, `lat`, `lng`, `name`, `type`) VALUES (NULL, '120', '1240', 'Triangle des bermudes', "Un endroit inexistant avec plein d\'imigrés");

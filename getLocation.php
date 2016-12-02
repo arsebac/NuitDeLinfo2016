@@ -7,16 +7,7 @@
  */
 //require_once "bdConnection.php";
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "nuit";
-
-$mysqli = new mysqli($servername, $username, $password, $dbname);
-if ($mysqli->connect_errno) {
-    echo "Unable to open database";
-    echo "Errno: " . $mysqli->connect_errno . "\n";
-}
+require_once "bdConnection.php";
     $arrayResult = array();
     $res = $mysqli->query("SELECT `lat`,`lng`,`name`,`type` FROM `location`");
 
