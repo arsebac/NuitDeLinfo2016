@@ -5,9 +5,9 @@
  * Date: 02/12/2016
  * Time: 00:08
  */
-//require_once "bdConnection.php";
 
 require_once "bdConnection.php";
+echo "yolo";
     $arrayResult = array();
     $res = $mysqli->query("SELECT `lat`,`lng`,`name`,`type` FROM `location`");
 
