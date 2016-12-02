@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,12 +21,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.vision.text.Text;
 
 import org.hackermen.migrantssansfrontieres.util.GPSTracker;
 import org.hackermen.migrantssansfrontieres.util.MapUtil;
 import org.hackermen.migrantssansfrontieres.util.Marker;
 import org.hackermen.migrantssansfrontieres.util.MarkerType;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -82,7 +86,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         public boolean onMarkerClick(final com.google.android.gms.maps.model.Marker marker) {
             AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
-            builder.setMessage("Editer un marker.")
+            builder.setMessage(marker.getTitle())
                     .setCancelable(true)
                     .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -101,14 +105,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         private void editMarker(final com.google.android.gms.maps.model.Marker marker){
             AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+            LinearLayout layout = new LinearLayout(MapsActivity.this);
             final EditText editText = new EditText(MapsActivity.this);
             editText.setTextColor(Color.BLACK);
             Spinner spinner = new Spinner(MapsActivity.this);
-            spinner.setAdapter(new ArrayAdapter<String>(MapsActivity.this, R.layout.spinner, MarkerType.getStringList()));
+            spinner.setAdapter(new ArrayAdapter<>(MapsActivity.this, R.layout.text_view, MarkerType.getStringList()));
+
+            layout.addView(editText);
+            layout.addView(spinner);
+
             builder.setMessage("Initialiser un nouveau marker.")
                     .setCancelable(true)
-                    .setView(editText)
-                    .setView(spinner)
+                    .setView(layout)
                     .setPositiveButton(R.string.fire, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             mapUtil.editMarker(marker);

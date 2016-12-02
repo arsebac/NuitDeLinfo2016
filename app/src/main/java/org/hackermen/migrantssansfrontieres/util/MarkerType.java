@@ -1,7 +1,5 @@
 package org.hackermen.migrantssansfrontieres.util;
 
-import android.graphics.drawable.Icon;
-
 import org.hackermen.migrantssansfrontieres.R;
 
 import java.util.ArrayList;
@@ -15,12 +13,14 @@ import java.util.Map;
  */
 
 public enum MarkerType {
-    SANITAIRE("sanitaire",R.drawable.sanitaire),
-    SANTE("sante", R.drawable.sante),
-    ASSOC("assoc",R.drawable.assoc);
+    SANITAIRE("Sanitaire", "sanitaire", R.drawable.sanitaire),
+    SANTE("Santé", "sante", R.drawable.sante),
+    ASSOC("Association", "assoc", R.drawable.assoc);
 
 
     static Map<String, MarkerType> map = new HashMap<>();
+    static List<String> names;
+    private String description;
     private String type;
     private int icon;
 
@@ -28,9 +28,11 @@ public enum MarkerType {
         map.put("sanitaire", SANITAIRE);
         map.put("sante", SANTE);
         map.put("assoc", ASSOC);
+        names = Arrays.asList("Sanitaire", "Santé", "Association");
     }
 
-    MarkerType(String type, int icon) {
+    MarkerType(String description, String type, int icon) {
+        this.description = description;
         this.type = type;
         this.icon = icon;
     }
@@ -43,15 +45,11 @@ public enum MarkerType {
         return icon;
     }
 
-    public static MarkerType getMarker(String type){
+    public static MarkerType getMarker(String type) {
         return map.get(type);
     }
 
-    public static List<String> getStringList(){
-        List<String> list = new ArrayList<>();
-        for (String str : map.keySet()){
-            list.add(str);
-        }
-        return list;
+    public static List<String> getStringList() {
+        return names;
     }
 }

@@ -6,10 +6,4 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
 
-
-    <string-array name="spinner">
-        <item>sanitaire</item>
-        <item>sante</item>
-        <item>assoc</item>
-    </string-array>
 </resources>
