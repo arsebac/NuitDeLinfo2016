@@ -8,7 +8,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -99,18 +101,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         private void editMarker(final com.google.android.gms.maps.model.Marker marker){
             AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+            final EditText editText = new EditText(MapsActivity.this);
+            editText.setTextColor(Color.BLACK);
+            Spinner spinner = new Spinner(MapsActivity.this);
+            spinner.setAdapter(new ArrayAdapter<String>(MapsActivity.this, R.layout.spinner, MarkerType.getStringList()));
             builder.setMessage("Initialiser un nouveau marker.")
                     .setCancelable(true)
+                    .setView(editText)
+                    .setView(spinner)
                     .setPositiveButton(R.string.fire, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-//                            mapUtil.editMarker(marker);
-//                            marker.remove();
-//                            MarkerOptions options = new MarkerOptions().position(marker.getPosition())
-//                                    .title(marker.getTitle()).icon(marker.get)
-//
-//                            mMap.addMarker(new MarkerOptions().position(latLng)
-//                                    .title(marker.getName())
-//                                    .icon(BitmapDescriptorFactory.fromBitmap(bitmap)));
+                            mapUtil.editMarker(marker);
+                            marker.remove();
+                            Marker marker1 = null;
+                            for (int i = 0; i < markers.size(); i++){
+                                if (markers.get(i).getName().equals(marker.getTitle())){
+                                    marker1 = markers.get(i);
+                                    break;
+                                }
+                            }
+                            editText.setText(marker1.getName());
+                            LatLng latLng = new LatLng(marker1.getLongitude(), marker1.getLatitude());
+                            MarkerType type = marker1.getType();
+                            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), type.getIcon(), null);
+                            bitmap = bitmap.createScaledBitmap(bitmap, 60, 60, false);
+
+                            mMap.addMarker(new MarkerOptions().position(latLng)
+                                    .title(marker1.getName())
+                                    .icon(BitmapDescriptorFactory.fromBitmap(bitmap)));
 
                         }
                     })

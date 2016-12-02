@@ -4,6 +4,7 @@ import android.graphics.drawable.Icon;
 
 import org.hackermen.migrantssansfrontieres.R;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +47,11 @@ public enum MarkerType {
         return map.get(type);
     }
 
-    public MarkerType[] getList(){
-        return (MarkerType[]) map.keySet().toArray();
+    public static List<String> getStringList(){
+        List<String> list = new ArrayList<>();
+        for (String str : map.keySet()){
+            list.add(str);
+        }
+        return list;
     }
 }
