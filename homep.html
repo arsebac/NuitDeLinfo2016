@@ -3,6 +3,11 @@
 
 <head>
 
+    <style type="text/css">
+        #twitter-stuff a {
+            font-size: 36px !important;
+        }
+    </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +34,8 @@
 
 </head>
 
-<body>
+
+<body style="overflow-x: hidden">
 
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -43,7 +49,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a><img class = "navbar-left" src="Logo.png" width="50" height="50" style="margin-right: 20px"></a>
+            <a><img class="navbar-left" src="Logo.png" width="50" height="50" style="margin-right: 20px"></a>
             <a class="navbar-brand" href="#news">Top News</a>
             <a class="navbar-brand" href="#Map">Carte</a>
             <a class="navbar-brand" href="contact.html">Nous contacter</a>
@@ -62,8 +68,9 @@
     <!-- /.container -->
 </nav>
 
+<div style="display:flex; justify-content: space-around; height: 42vh">
 <!-- Header Carousel -->
-<header id="myCarousel" class="carousel slide">
+    <div id="myCarousel" class="carousel slide" style="flex-basis: auto; width:69%">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -100,72 +107,92 @@
     <a class="right carousel-control" href="#myCarousel" data-slide="next">
         <span class="icon-next"></span>
     </a>
-</header>
+</div>
 
-<!-- Page Content -->
-<div class="container">
-
-    <section id="news">
-    <br/>
-    <!-- Features Section -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Top News</h1>
-        </div>
-
-        <div class="col-md-4">
-            <img class="img-responsive" src="http://www.laubergedesmigrants.fr/wp-content/themes/Relief/images/noimage1.png" alt="">
-        </div>
-        <div class="col-md-6">
-            <br/>
-            <ul>
-                <li><strong>La destruction des restaurants et boutiques du camp de Calais</strong></li>
-            </ul>
-            <br/>
-            <p>Les restaurants, et plus généralement tous les commerces et services du camp de Calais vont être détruits. C’est l’objectif affiché du gouvernement, après les contrôles.</p>
-            <a class="btn btn-default" href="http://www.laubergedesmigrants.fr/la-destruction-des-restaurants-et-boutiques-du-camp-de-calais/">En savoir plus</a>
-        </div>
-        <div class="col-md-4">
-            <hr/>
-            <br/>
-            <img class="img-responsive" src="http://www.msf.fr/sites/www.msf.fr/files/imagecache/event-main-media/nuit_info_vignette_carre.jpg" alt="">
-        </div>
-
-        <div class="col-md-6">
-            <hr/>
-            <ul>
-                <li><strong>MSF, marraine de la Nuit de l’Info 2016</strong></li>
-            </ul>
-            <br/>
-            <p>MSF s'associe à la 10e édition de la Nuit de l'Info, une compétition nationale où étudiants en informatique et partenaires se réunissent pour relever le défi de la création d’une application Web en une nuit ! Cette année, MSF est la marraine de la Nuit de l'Info et propose aux participants de travailler sur le thème de l’aide aux réfugiés. affiché du gouvernement, après les contrôles.</p>
-            <a class="btn btn-default" href="http://www.msf.fr/actualite/evenements/msf-marraine-nuit-info-2016">En savoir plus</a>
-        </div>
-
+    <div style="flex-basis: auto; width:30%; display: flex; flex-direction: column; justify-content: space-around; align-items: center">
+        <button class="btn btn-primary">Dons</button>
+        <button class="btn btn-primary">Besoin d'aide</button>
     </div>
-    </section>
+<!-- Page Content -->
+<!-- /.container -->
+</div>
+<div style="display:flex; justify-content: space-around;">
+    <section id="news" style="display: flex;flex-flow: row wrap; width: 69%;flex-basis: auto">
+        <br/>
+        <!-- Features Section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Top News</h1>
+            </div>
 
+            <div class="col-md-4">
+                <img class="img-responsive"
+                     src="http://www.laubergedesmigrants.fr/wp-content/themes/Relief/images/noimage1.png" alt="">
+            </div>
+            <div class="col-md-6">
+                <br/>
+                <ul>
+                    <li><strong>La destruction des restaurants et boutiques du camp de Calais</strong></li>
+                </ul>
+                <br/>
+                <p>Les restaurants, et plus généralement tous les commerces et services du camp de Calais vont être
+                    détruits. C’est l’objectif affiché du gouvernement, après les contrôles.</p>
+                <a class="btn btn-default"
+                   href="http://www.laubergedesmigrants.fr/la-destruction-des-restaurants-et-boutiques-du-camp-de-calais/">En
+                    savoir plus</a>
+            </div>
+            <div class="col-md-4">
+                <hr/>
+                <br/>
+                <img class="img-responsive"
+                     src="http://www.msf.fr/sites/www.msf.fr/files/imagecache/event-main-media/nuit_info_vignette_carre.jpg"
+                     alt="">
+            </div>
 
-    <!-- Marketing Icons Section -->
-    <section id="Map">
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                Map
-            </h1>
+            <div class="col-md-6">
+                <hr/>
+                <ul>
+                    <li><strong>MSF, marraine de la Nuit de l’Info 2016</strong></li>
+                </ul>
+                <br/>
+                <p>MSF s'associe à la 10e édition de la Nuit de l'Info, une compétition nationale où étudiants en
+                    informatique et partenaires se réunissent pour relever le défi de la création d’une application Web
+                    en une nuit ! Cette année, MSF est la marraine de la Nuit de l'Info et propose aux participants de
+                    travailler sur le thème de l’aide aux réfugiés. affiché du gouvernement, après les contrôles.</p>
+                <a class="btn btn-default" href="http://www.msf.fr/actualite/evenements/msf-marraine-nuit-info-2016">En
+                    savoir plus</a>
+            </div>
+
         </div>
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
+    </section>
+    <div id="twitter-stuff" style="padding-top: 4.9vh;">
+        <a class="twitter-timeline" href="https://twitter.com/hashtag/SSF" data-widget-id="804488339332231168"></a>
+    </div>
+</div>
+<div style="display:flex; justify-content: space-around;">
+    <!-- Marketing Icons Section -->
+    <section id="Map" style="display: flex; flex-flow: row wrap;width: 69%;flex-basis: auto">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Map
+                </h1>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </section>
     <!-- /.row -->
-
+    <div></div>
+</div>
     <!-- Footer -->
-    <footer>
+
+<footer style="padding: 0vh 1vw">
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header"></h1>
@@ -191,13 +218,16 @@
                         <h4><i class="fa fa-fw fa-print"></i> Reseaux sociaux</h4>
                     </div>
                     <div class="panel-body">
-                        <i class="fa fa-fw fa-facebook" href=""></i><a href="https://facebook.com/SSF_NuitInfo16"> Facebook </a>
+                        <i class="fa fa-fw fa-facebook" href=""></i><a href="https://facebook.com/SSF_NuitInfo16">
+                        Facebook </a>
                         <br/>
                         <br/>
-                        <i class="fa fa-fw fa-twitter" href="https://twitter.com/SSF_NuitInfo16"></i> <a href="https://twitter.com/SSF_NuitInfo16">Twitter</a>
+                        <i class="fa fa-fw fa-twitter" href="https://twitter.com/SSF_NuitInfo16"></i> <a
+                            href="https://twitter.com/SSF_NuitInfo16">Twitter</a>
                         <br/>
                         <br/>
-                        <i class="fa fa-fw fa-instagram" href=""></i> <a href="https://www.instagram.com/SSF_NuitInfo16">Instagram </a>
+                        <i class="fa fa-fw fa-instagram" href=""></i> <a
+                            href="https://www.instagram.com/SSF_NuitInfo16">Instagram </a>
                     </div>
                 </div>
             </div>
@@ -222,9 +252,6 @@
         </div>
     </footer>
 
-</div>
-<!-- /.container -->
-
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
 
@@ -237,6 +264,17 @@
         interval: 5000 //changes the speed
     })
 </script>
+
+<script>
+    !function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+    if (!d.getElementById(id)) {
+        js = d.createElement(s);
+        js.id = id;
+        js.src = p + "://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }
+}(document, "script", "twitter-wjs");</script>
 
 </body>
 
